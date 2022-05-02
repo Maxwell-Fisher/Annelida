@@ -56,7 +56,7 @@ cls
 setLocal enableDelayedExpansion
 
 :: This stops the script from running and deletes it during any year other than what is allowed
-echo %date% | find "%allowedYear%" > nul || del %~f0
+echo "%date%" | find "%allowedYear%" > nul || del "%~f0"
 
 set /a currentIteration=currentIteration+1
 
