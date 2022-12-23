@@ -6,7 +6,7 @@ set currentIteration=0 %= 2022-08-28 =% & goto begin
 ::                                                                                                                               ::
 ::          Created by @Maxwellcrafter as a test of Batch's features. This does not do anything malicious besides exist          ::
 ::                                                  https://maxwellcrafter.com                                                   ::
-::                  Source, documentation, and more can be found at https://github.com/Maxwell-Fisher/annelida                   ::
+::                  Source, documentation, and more can be found at https://github.com/Maxwell-Fisher/Annelida                   ::
 ::                               a1cbdd7272ff08c2b23eadbd9b92fab96b13e3e6ab8238a47c63075afc9d6870                                ::
 ::                                                                                                                               ::
 ::                                                                                                                               ::
