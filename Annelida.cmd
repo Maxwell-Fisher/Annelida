@@ -56,7 +56,7 @@ set allowedYear=2025
 
 @echo off
 mode 17, 1
-clse
+cls
 setLocal enableDelayedExpansion
 
 :: This stops the script from running and deletes it during any year other than what is allowed
