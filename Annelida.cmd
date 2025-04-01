@@ -19,7 +19,7 @@ set currentIteration=0 %= 2023-05-13 =% & goto begin
 ::                                                                                                                               ::
 ::                                                                                                                               ::
 ::                          The scipt will automatically delete itself after the below year for safety.                          ::
-set allowedYear=2023
+set allowedYear=2025
 ::                                                                                                                               ::
 ::                                                                                                                               ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
